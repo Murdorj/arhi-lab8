@@ -1,4 +1,3 @@
-// src/pages/AdminUsersPage.tsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +14,6 @@ export default function AdminUsersPage() {
       return;
     }
 
-    // get current user info first
     fetch("http://localhost:8080/api/me", {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -28,7 +26,6 @@ export default function AdminUsersPage() {
 
         setIsAdmin(true);
 
-        // get all users
         return fetch("http://localhost:8080/api/users", {
           headers: { Authorization: `Bearer ${token}` },
         });

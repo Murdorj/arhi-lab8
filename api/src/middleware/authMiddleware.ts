@@ -23,11 +23,11 @@ export const authMiddleware = (
     try {
       const decoded = jwt.verify(token, JWT_SECRET) as {
         userId: string;
-        userType: string; // ⬅️ userType decode хийж авна
+        userType: string;
       };
   
       (req as any).userId = decoded.userId;
-      (req as any).userType = decoded.userType; // ⬅️ req дээр онооно
+      (req as any).userType = decoded.userType;
   
       next();
     } catch (error) {

@@ -9,8 +9,6 @@ dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET || "secret_key";
 
-// @desc    Register user
-// @route   POST /api/register
 export const register = async (req: Request, res: Response) => {
   try {
     const {
@@ -25,7 +23,6 @@ export const register = async (req: Request, res: Response) => {
       cardExpiryDate,
     } = req.body;
 
-    // Давхар бүртгэл шалгах
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       res.status(400).json({ message: "Email already registered" });
@@ -38,7 +35,6 @@ export const register = async (req: Request, res: Response) => {
       return;
     }
 
-    // Нууц үг шифрлэх
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User({
@@ -61,8 +57,6 @@ export const register = async (req: Request, res: Response) => {
   }
 };
 
-// @desc    Login user
-// @route   POST /api/login
 export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
@@ -79,7 +73,6 @@ export const login = async (req: Request, res: Response) => {
       return;
     }
 
-    // ✅ userType-г token-д оруулсан нь чухал
     const token = jwt.sign(
       {
         userId: user._id,
@@ -104,8 +97,6 @@ export const login = async (req: Request, res: Response) => {
   }
 };
 
-// @desc    Get current user
-// @route   GET /api/me
 export const getMe = async (req: Request, res: Response) => {
   try {
     const userId = (req as any).userId;
@@ -122,11 +113,8 @@ export const getMe = async (req: Request, res: Response) => {
   }
 };
 
-// @desc    Get all users (admin only)
-// @route   GET /api/users
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
-    // JWT-аас userType-г req дээр оноосон гэж үзье
     if ((req as any).userType !== "admin") {
       res.status(403).json({ message: "Access denied" });
       return;
@@ -139,7 +127,6 @@ export const getAllUsers = async (req: Request, res: Response) => {
   }
 };
 
-// userController.ts
 export const addCard = async (req: Request, res: Response) => {
   try {
     const userId = (req as any).userId;

@@ -1,4 +1,3 @@
-// src/pages/RegisterPage.tsx
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -9,7 +8,7 @@ export default function RegisterPage() {
     firstName: "",
     lastName: "",
     registrationNumber: "",
-    userType: "user", // default утга
+    userType: "user",
   });
 
   const [error, setError] = useState("");
@@ -90,7 +89,6 @@ export default function RegisterPage() {
           onChange={handleChange}
         />
 
-        {/* ✅ Хэрэглэгчийн төрөл */}
         <select
           name="userType"
           className="w-full mb-3 p-2 border rounded"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // ⬅️ Link нэмсэн
+import { useNavigate, Link } from "react-router-dom";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -61,7 +61,6 @@ export default function LoginPage() {
           Login
         </button>
 
-        {/* ✅ Бүртгүүлээгүй хэрэглэгчдэд линк */}
         <p className="text-sm mt-4 text-center">
           Not registered yet?{" "}
           <Link to="/register" className="text-blue-600 hover:underline">
